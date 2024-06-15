@@ -115,6 +115,6 @@ def test():
     scraper = cloudscraper.create_scraper()  
     html = scraper.get("https://ca.indeed.com/jobs?q=intern&l=Waterloo, ON&radius=15")
     soup = BeautifulSoup(html.text, 'html.parser')
-    print(soup.find_all('span', id = "jobTitle-6366d8cf6b4c1110"))
+    print(soup.find_all('href'))
 
 test()
