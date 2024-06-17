@@ -86,5 +86,7 @@ Example:
 ```
 
 ## Note
-Adding too many locations and queries will greatly increase the time it takes to run because they're in a nested loop, so don't add too many. 
-Indeed might block the script if it makes too many visits since I'm sure they have countermeasures to prevent scraping even though I haven't noticed any so far. Also, the LinkedIn API might also stop working at some point in the near future.
+- Some job titles seem to not be filtered properly and I'm not entirely sure why. If it contains any from excludes it won't get added but if it includes any of the keywords in `must_include`, it gets added, so I should probably fix that.
+- Adding too many locations and queries will greatly increase the time it takes to run because they're in a nested loop (depending on the amount of jobs/pages), so try not to add too many. 
+- Indeed might block the script if it makes too many visits since I'm sure they have countermeasures to prevent scraping even though I haven't noticed any so far.
+- The LinkedIn API might also stop working at some point in the near future.
