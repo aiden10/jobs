@@ -55,7 +55,11 @@ def get_dates(titles):
             today = datetime.today()
             date_t = timedelta(days=days_ago[0])
             final_date = (today - date_t).strftime(date_format)
-            dates.append(final_date)
+        else: 
+            print(f"failed to get date for {title.get_text().strip()}: defaulting to today's date")
+            final_date = today.strftime(date_format) 
+        
+        dates.append(final_date)
 
     return dates
 
@@ -119,7 +123,7 @@ def scrape_indeed():
                     if new_job[titles[i].get_text().strip()]["date"] != 'failed to fetch date':
                         if (datetime.today() - datetime.strptime((new_job[titles[i].get_text().strip()])["date"], '%Y-%m-%d')).days < age_limit: 
                             jobs['jobs'].update(new_job) 
-                            print(titles[i].get_text().strip())
+                            print(f'{titles[i].get_text().strip()} (Indeed)')
 
                 # if no next page
                 if not driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div/div[5]/div/div[1]/nav/ul/li[6]/a'):

@@ -95,7 +95,7 @@ def scrape_linkedin():
                     if new_job[titles[i].get_text().strip()]["date"] != 'failed to fetch date':
                         if (datetime.today() - datetime.strptime((new_job[titles[i].get_text().strip()])["date"], '%Y-%m-%d')).days < age_limit: 
                             jobs['jobs'].update(new_job) 
-                            print(titles[i].get_text().strip())
+                            print(f'{titles[i].get_text().strip()} (LinkedIn)')
 
                 html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start={page}')
                 soup = BeautifulSoup(html.text, 'html.parser')
