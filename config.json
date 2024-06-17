@@ -8,8 +8,7 @@
         "Whitby, ON",
         "Markham, ON",
         "Waterloo, ON",
-        "Toronto, ON",
-        "Ottawa, ON"
+        "Toronto, ON"
     ],
     "includes": [
         "software engineering",
@@ -50,6 +49,6 @@
         "accounting",
         "accountant"
     ],
-    "age_limit": 14,
+    "age_limit": 7,
     "distance": 25
 }

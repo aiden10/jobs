@@ -20,9 +20,11 @@ def get_titles(soup, includes, must_include, excludes):
     filtered_titles = []
     titles = soup.find_all("span", {"class": "sr-only"})
     for title in titles:
-        if (any(include in title.get_text().strip().lower() for include in includes) 
+        if (
+            any(include in title.get_text().strip().lower() for include in includes) 
             and any(must in title.get_text().strip().lower() for must in must_include) 
-            and not any(exclude in title.get_text().strip().lower() for exclude in excludes)):
+            and not any(exclude in title.get_text().strip().lower() for exclude in excludes)
+            ):
             filtered_titles.append(title)
     return filtered_titles
 
@@ -48,8 +50,9 @@ def get_dates(titles):
             date = title.parent.parent.find(class_='job-search-card__listdate')
             dates.append(date['datetime'])
         except Exception as e:
+            today = datetime.today().strftime('%Y-%m-%d')
             print(f'Error adding date: {e}')
-            dates.append('failed to fetch date')
+            dates.append(today) # default to today's date 
 
     return dates
 
