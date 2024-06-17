@@ -1,21 +1,21 @@
 {
     "queries": [
         "student",
-        "co-op",
-        "intern"
+        "intern",
+        "co-op"
     ],
     "locations": [
         "Whitby, ON",
-        "Markham, ON",
         "Waterloo, ON",
-        "Toronto, ON"
+        "Markham, ON"
     ],
     "includes": [
         "software engineering",
         "software engineer",
         "software",
         "technology",
-        "computer", 
+        "computer",
+        "systems",
         "full stack",
         "full-stack",
         "backend",
@@ -27,7 +27,9 @@
         "mobile",
         "web",
         "it",
-        "quality assurance"
+        "quality assurance",
+        "devops",
+        "dev ops"
     ],
     "must_include": [
         "intern",
@@ -47,7 +49,17 @@
         "civil",
         "mechanical",
         "accounting",
-        "accountant"
+        "accountant",
+        "hr",
+        "human resources",
+        "lecturer",
+        "teacher",
+        "professor",
+        "education",
+        "nurse",
+        "nursing",
+        "cultural",
+        "medicine"
     ],
     "age_limit": 7,
     "distance": 25

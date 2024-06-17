@@ -56,20 +56,11 @@ def get_dates(titles):
 
     return dates
 
-def clear_old_jobs(jobs, age_limit):
-    jobs_to_delete = []
-    today = datetime.today()
+def count_jobs(jobs):
+    count = 0
     for title, details in jobs['jobs'].items():
-        if details["date"] != 'failed to fetch date':
-            date = datetime.strptime(details["date"], '%Y-%m-%d')
-            difference = (today - date).days
-            if difference > age_limit:
-                jobs_to_delete.append(title)
-    
-    for title in jobs_to_delete:
-        del jobs['jobs'][title]
-
-    return jobs
+        count += 1
+    return count
 
 def scrape_linkedin():
     queries, locations, include, must_include, exclude, age_limit, distance = load_config()
@@ -78,7 +69,7 @@ def scrape_linkedin():
     with open('jobs.json', 'r') as job_json:
         jobs = json.load(job_json)
 
-    jobs = clear_old_jobs(jobs, age_limit)
+    old_count = count_jobs(jobs)
 
     for query in queries:
         for location in locations:
@@ -93,7 +84,6 @@ def scrape_linkedin():
                 page += 1
                 
                 for i in range(len(titles)):
-                    print(titles[i].get_text().strip())
                     new_job = {
                         titles[i].get_text().strip(): {
                             "link": links[i],
@@ -105,11 +95,15 @@ def scrape_linkedin():
                     if new_job[titles[i].get_text().strip()]["date"] != 'failed to fetch date':
                         if (datetime.today() - datetime.strptime((new_job[titles[i].get_text().strip()])["date"], '%Y-%m-%d')).days < age_limit: 
                             jobs['jobs'].update(new_job) 
-                            
+                            print(titles[i].get_text().strip())
+
                 html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start={page}')
                 soup = BeautifulSoup(html.text, 'html.parser')
 
     # write new job
     with open('jobs.json', 'w') as job_json:
         json.dump(jobs, job_json, indent=4)
+
+    new_count = count_jobs(jobs)
+    print(f'Found {abs(old_count - new_count)} new jobs on LinkedIn')
 
