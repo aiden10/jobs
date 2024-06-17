@@ -1,7 +1,8 @@
-# LinkedIn Job Scraper
-plan to also scrape indeed but that's a bit tougher
+# LinkedIn and Indeed Job Scraper
 
 ## Usage
+Install the required packages by typing the following command into your terminal: `pip install -r requirements.txt`
+
 Modify the `config.json` file to your liking.
 
 - **queries**: what you want to search 
@@ -18,11 +19,11 @@ Modify the `config.json` file to your liking.
 
 - **distance**: not really sure if this is miles or kilometres, but it's the distance from the location  
 
-Then run the main file or call the `scrape_linkedin` function directly. 
+Then run the `jobs.bat` file or call the main function directly. And for added convenience you could also add the `jobs.bat` to your start menu or desktop.
 
-After, you can open the `index.html` file and view the jobs that have been scraped in your browser. 
+After the script finishes, you can open the `index.html` file and view the jobs that have been scraped in your browser. 
 
-![jobs-ezgif com-video-to-gif-converter](https://github.com/aiden10/jobs/assets/51337166/d304ff80-28f4-46f2-ba24-1f6ec0fd2b85)
+![scroll-ezgif com-video-to-gif-converter](https://github.com/aiden10/jobs/assets/51337166/65ca110f-abfa-43d8-8bd0-264eb793d7f9)
 
 Example:
 ```
@@ -83,3 +84,7 @@ Example:
     "distance": 25
 }
 ```
+
+## Note
+Adding too many locations and queries will greatly increase the time it takes to run because they're in a nested loop, so don't add too many. 
+Indeed might block the script if it makes too many visits since I'm sure they have countermeasures to prevent scraping even though I haven't noticed any so far. Also, the LinkedIn API might also stop working at some point in the near future.
