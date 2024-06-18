@@ -86,7 +86,13 @@ def clear_old_jobs(jobs, age_limit):
 
     return jobs
 
-def scrape_indeed():
+def write_jobs(jobs):
+    if len(jobs) > 0:
+        with open('jobs.json', 'w') as job_json:
+            json.dump(jobs, job_json, indent=4)
+
+
+def scrape_indeed(result):
     queries, locations, include, must_include, exclude, age_limit, distance = load_config()
     options = Options()         
     options.headless = True 
@@ -137,10 +143,8 @@ def scrape_indeed():
                 soup = BeautifulSoup(html, 'html.parser')
 
     driver.quit()
-    # write new job
-    with open('jobs.json', 'w') as job_json:
-        json.dump(jobs, job_json, indent=4)
     
     new_count = count_jobs(jobs)
     print(f'Found {abs(old_count - new_count)} new jobs on Indeed')
 
+    result[0] = jobs

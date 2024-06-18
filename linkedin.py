@@ -62,7 +62,7 @@ def count_jobs(jobs):
         count += 1
     return count
 
-def scrape_linkedin():
+def scrape_linkedin(result):
     queries, locations, include, must_include, exclude, age_limit, distance = load_config()
 
     # load old jobs
@@ -100,10 +100,7 @@ def scrape_linkedin():
                 html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start={page}')
                 soup = BeautifulSoup(html.text, 'html.parser')
 
-    # write new job
-    with open('jobs.json', 'w') as job_json:
-        json.dump(jobs, job_json, indent=4)
-
     new_count = count_jobs(jobs)
     print(f'Found {abs(old_count - new_count)} new jobs on LinkedIn')
 
+    result[0] = jobs
