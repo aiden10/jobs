@@ -22,9 +22,11 @@ def get_titles(soup, includes, must_include, excludes):
     filtered_titles = []
     titles = soup.select('span[title]')
     for title in titles:
-        if (any(include in title.get_text().strip().lower() for include in includes) 
-            and any(must in title.get_text().strip().lower() for must in must_include) 
-            and not any(exclude in title.get_text().strip().lower() for exclude in excludes)):
+        title_text = title.get_text().strip().lower()
+        includes_matches = [include for include in includes if include in title_text]
+        must_include_matches = [must for must in must_include if must in title_text]
+        excludes_matches = [exclude for exclude in excludes if exclude in title_text]
+        if len(includes_matches) > 0 and len(must_include_matches) > 0 and len(excludes_matches) == 0:
             filtered_titles.append(title)
     return filtered_titles
 
@@ -48,11 +50,11 @@ def get_dates(titles):
     dates = []
     date_format = '%Y-%m-%d'
     for title in titles:
+        today = datetime.today()
         parent = title.find_parent('div', {'class': 'job_seen_beacon'})
         date_info = parent.find('span', {'class': 'css-qvloho eu4oa1w0'}).text.replace('+', '')
         days_ago = [int(s) for s in date_info.split() if s.isdigit()]
         if len(days_ago) > 0:
-            today = datetime.today()
             date_t = timedelta(days=days_ago[0])
             final_date = (today - date_t).strftime(date_format)
         else: 
