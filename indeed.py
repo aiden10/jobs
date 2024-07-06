@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 import json
+import time
 
 def load_config():
     with open('config.json') as file:
@@ -23,11 +24,14 @@ def get_titles(soup, includes, must_include, excludes):
     titles = soup.select('span[title]')
     for title in titles:
         title_text = title.get_text().strip().lower()
-        includes_matches = [include for include in includes if include in title_text]
-        must_include_matches = [must for must in must_include if must in title_text]
-        excludes_matches = [exclude for exclude in excludes if exclude in title_text]
-        if len(includes_matches) > 0 and len(must_include_matches) > 0 and len(excludes_matches) == 0:
+        title_text = title_text.replace('/', ' ')
+        title_words = title_text.split()
+        includes_matches = any(include in title_words for include in includes)
+        must_include_matches = any(must in title_words for must in must_include)
+        excludes_matches = any(exclude in title_words for exclude in excludes)
+        if includes_matches and must_include_matches and not excludes_matches:
             filtered_titles.append(title)
+
     return filtered_titles
 
 def get_links(titles):
@@ -91,6 +95,11 @@ def write_jobs(jobs):
         with open('jobs.json', 'w') as job_json:
             json.dump(jobs, job_json, indent=4)
 
+def merge_jobs(linkedin_jobs, indeed_jobs):
+    all_jobs = {"jobs": {}}
+    all_jobs["jobs"].update(linkedin_jobs["jobs"])
+    all_jobs["jobs"].update(indeed_jobs["jobs"])
+    return all_jobs
 
 def scrape_indeed(result):
     queries, locations, include, must_include, exclude, age_limit, distance = load_config()
@@ -134,6 +143,7 @@ def scrape_indeed(result):
                             print(f'{titles[i].get_text().strip()} (Indeed)')
 
                 # if no next page
+                time.sleep(3) # adding this to hopefully not get IP banned
                 if not driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div/div[5]/div/div[1]/nav/ul/li[6]/a'):
                     break
         

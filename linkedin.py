@@ -21,11 +21,14 @@ def get_titles(soup, includes, must_include, excludes):
     titles = soup.find_all("span", {"class": "sr-only"})
     for title in titles:
         title_text = title.get_text().strip().lower()
-        includes_matches = [include for include in includes if include in title_text]
-        must_include_matches = [must for must in must_include if must in title_text]
-        excludes_matches = [exclude for exclude in excludes if exclude in title_text]
-        if len(includes_matches) > 0 and len(must_include_matches) > 0 and len(excludes_matches) == 0:
+        title_text = title_text.replace('/', ' ')
+        title_words = title_text.split()
+        includes_matches = any(include in title_words for include in includes)
+        must_include_matches = any(must in title_words for must in must_include)
+        excludes_matches = any(exclude in title_words for exclude in excludes)
+        if includes_matches and must_include_matches and not excludes_matches:
             filtered_titles.append(title)
+
     return filtered_titles
 
 def get_links(titles):
@@ -92,6 +95,7 @@ def scrape_linkedin(result):
                         }
                     }
                     # only add jobs within the age limit
+                    # don't add if it already exists
                     if new_job[titles[i].get_text().strip()]["date"] != 'failed to fetch date':
                         if (datetime.today() - datetime.strptime((new_job[titles[i].get_text().strip()])["date"], '%Y-%m-%d')).days < age_limit: 
                             jobs['jobs'].update(new_job) 
