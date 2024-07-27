@@ -7,7 +7,8 @@
     "locations": [
         "Whitby, ON",
         "Waterloo, ON",
-        "Markham, ON"
+        "Markham, ON",
+        "Kitchener, ON"
     ],
     "includes": [
         "software engineering",
@@ -29,7 +30,8 @@
         "it",
         "quality assurance",
         "devops",
-        "dev ops"
+        "dev ops",
+        "cloud"
     ],
     "must_include": [
         "intern",

@@ -59,6 +59,21 @@ def get_dates(titles):
 
     return dates
 
+def clear_old_jobs(jobs, age_limit):
+    jobs_to_delete = []
+    today = datetime.today()
+    for title, details in jobs['jobs'].items():
+        if details["date"] != 'failed to fetch date':
+            date = datetime.strptime(details["date"], '%Y-%m-%d')
+            difference = (today - date).days
+            if difference > age_limit:
+                jobs_to_delete.append(title)
+    
+    for title in jobs_to_delete:
+        del jobs['jobs'][title]
+
+    return jobs
+
 def count_jobs(jobs):
     count = 0
     for title, details in jobs['jobs'].items():
@@ -72,6 +87,7 @@ def scrape_linkedin(result):
     with open('jobs.json', 'r') as job_json:
         jobs = json.load(job_json)
 
+    jobs = clear_old_jobs(jobs, age_limit)
     old_count = count_jobs(jobs)
 
     for query in queries:
