@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 import json
+import random
 import time
 
 def load_config():
@@ -143,7 +144,7 @@ def scrape_indeed(result):
                             print(f'{titles[i].get_text().strip()} (Indeed)')
 
                 # if no next page
-                time.sleep(3) # adding this to hopefully not get IP banned
+                time.sleep(random.randint(3,8)) # adding this to hopefully not get IP banned
                 if not driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div/div[5]/div/div[1]/nav/ul/li[6]/a'):
                     break
         

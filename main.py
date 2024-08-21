@@ -12,4 +12,3 @@ t1.join()
 t2.join()
 all_jobs = merge_jobs(linkedin_jobs[0], indeed_jobs[0])
 write_jobs(all_jobs)
-

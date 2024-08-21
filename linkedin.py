@@ -1,8 +1,12 @@
 from bs4 import BeautifulSoup 
 from datetime import datetime
 import requests
+import time
+import random
 import json
-
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+}
 def load_config():
     with open('config.json') as file:
         config = json.load(file)
@@ -89,13 +93,16 @@ def scrape_linkedin(result):
 
     jobs = clear_old_jobs(jobs, age_limit)
     old_count = count_jobs(jobs)
-
     for query in queries:
+        time.sleep(random.randint(2,5))
         for location in locations:
+            print(f'query: {query}, location: {location}')
             page = 0
-            html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start=0')
+            html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start=0', headers=headers)
             soup = BeautifulSoup(html.text, 'html.parser')
-            while len(soup.find_all('li')) > 0:
+            links = soup.find_all('a')
+            while len(links) > 0:
+                time.sleep(random.randint(6,15))
                 titles = get_titles(soup, include, must_include, exclude)
                 links = get_links(titles)
                 locations = get_locations(titles)
@@ -117,8 +124,9 @@ def scrape_linkedin(result):
                             jobs['jobs'].update(new_job) 
                             print(f'{titles[i].get_text().strip()} (LinkedIn)')
 
-                html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start={page}')
+                html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start={page}', headers=headers)
                 soup = BeautifulSoup(html.text, 'html.parser')
+                links = soup.find_all('a')
 
     new_count = count_jobs(jobs)
     print(f'Found {abs(old_count - new_count)} new jobs on LinkedIn')
