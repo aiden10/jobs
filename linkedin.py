@@ -78,12 +78,6 @@ def clear_old_jobs(jobs, age_limit):
 
     return jobs
 
-def count_jobs(jobs):
-    count = 0
-    for title, details in jobs['jobs'].items():
-        count += 1
-    return count
-
 def scrape_linkedin(result):
     queries, locations, include, must_include, exclude, age_limit, distance = load_config()
 
@@ -92,9 +86,9 @@ def scrape_linkedin(result):
         jobs = json.load(job_json)
 
     jobs = clear_old_jobs(jobs, age_limit)
-    old_count = count_jobs(jobs)
+    old_count = len(jobs["jobs"])
     for query in queries:
-        time.sleep(random.randint(2,5))
+        time.sleep(random.randint(5,8))
         for location in locations:
             print(f'query: {query}, location: {location}')
             page = 0
@@ -115,6 +109,7 @@ def scrape_linkedin(result):
                             "link": links[i],
                             "location": locations[i],
                             "date": dates[i],
+                            "new": True
                         }
                     }
                     # only add jobs within the age limit
@@ -128,7 +123,7 @@ def scrape_linkedin(result):
                 soup = BeautifulSoup(html.text, 'html.parser')
                 links = soup.find_all('a')
 
-    new_count = count_jobs(jobs)
+    new_count = len(jobs["jobs"])
     print(f'Found {abs(old_count - new_count)} new jobs on LinkedIn')
 
     result[0] = jobs

@@ -19,6 +19,7 @@ h1 {
     border-bottom: 1px solid #ddd;
     padding: 30px;
     margin: 15px;
+    position: relative;
 }
 .jobDiv:last-child {
     border-bottom: none;
@@ -37,4 +38,19 @@ a:visited {
 h3 {
     margin: 5px 0;
     color: #555;
+}
+.new-job {
+    background-color: #f0f8ff; /* Light blue background for new jobs */
+    border-left: 5px solid #0073e6; /* Blue left border for new jobs */
+}
+.new-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #0073e6;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: bold;
 }

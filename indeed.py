@@ -70,12 +70,6 @@ def get_dates(titles):
 
     return dates
 
-def count_jobs(jobs):
-    count = 0
-    for title, details in jobs['jobs'].items():
-        count += 1
-    return count
-
 def clear_old_jobs(jobs, age_limit):
     jobs_to_delete = []
     today = datetime.today()
@@ -91,8 +85,12 @@ def clear_old_jobs(jobs, age_limit):
 
     return jobs
 
-def write_jobs(jobs):
-    if len(jobs) > 0:
+def write_jobs(jobs, old_jobs):
+    for job_title, job_info in jobs["jobs"].items():
+        if job_title in old_jobs["jobs"]:
+            job_info["new"] = False
+    
+    if len(jobs["jobs"]) > 0:
         with open('jobs.json', 'w') as job_json:
             json.dump(jobs, job_json, indent=4)
 
@@ -112,7 +110,7 @@ def scrape_indeed(result):
         jobs = json.load(job_json)
 
     jobs = clear_old_jobs(jobs, age_limit)
-    old_count = count_jobs(jobs)
+    old_count = len(jobs["jobs"])
 
     for query in queries:
         for location in locations:
@@ -135,6 +133,7 @@ def scrape_indeed(result):
                             "link": links[i],
                             "location": locations[i],
                             "date": dates[i],
+                            "new": True
                         }
                     }
                     # only add jobs within the age limit
@@ -144,7 +143,7 @@ def scrape_indeed(result):
                             print(f'{titles[i].get_text().strip()} (Indeed)')
 
                 # if no next page
-                time.sleep(random.randint(3,8)) # adding this to hopefully not get IP banned
+                time.sleep(random.randint(1,4)) # adding this to hopefully not get IP banned
                 if not driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div/div[5]/div/div[1]/nav/ul/li[6]/a'):
                     break
         
@@ -155,7 +154,7 @@ def scrape_indeed(result):
 
     driver.quit()
     
-    new_count = count_jobs(jobs)
+    new_count = len(jobs["jobs"])
     print(f'Found {abs(old_count - new_count)} new jobs on Indeed')
 
     result[0] = jobs
