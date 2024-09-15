@@ -23,7 +23,7 @@ Then run the `jobs.bat` file or call the main function directly. And for added c
 
 After the script finishes, you can open the `index.html` file and view the jobs that have been scraped in your browser. 
 
-![scroll-ezgif com-video-to-gif-converter](https://github.com/aiden10/jobs/assets/51337166/65ca110f-abfa-43d8-8bd0-264eb793d7f9)
+![job_scroll-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/cb682340-bb03-479e-b696-2204ec41726f)
 
 Example:
 ```
@@ -86,6 +86,6 @@ Example:
 ```
 
 ## Note
-- Adding too many locations and queries will greatly increase the time it takes to run because they're in a nested loop (depending on the amount of jobs/pages), so try not to add too many. 
-- Indeed might block the script if it makes too many visits since I'm sure they have countermeasures to prevent scraping even though I haven't noticed any so far.
-- The LinkedIn API might also stop working at some point in the near future.
+- Random delays have been added to prevent the script from immediately being blocked. I might implement proxy switching eventually.
+- Indeed might flag you as a bot for a little bit if this runs too much. It'll go away if you visit the site yourself and click the Cloudflare button to verify yourself enough times.
+- The LinkedIn API seems to have some limit on the amount of requests that can be made over an unknown period of time. 
