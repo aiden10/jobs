@@ -102,8 +102,8 @@ def merge_jobs(linkedin_jobs, indeed_jobs):
 
 def scrape_indeed(result):
     queries, locations, include, must_include, exclude, age_limit, distance = load_config()
-    options = Options()         
-    options.headless = True 
+    options = Options()     
+    options.headless = True
     driver = webdriver.Firefox(options=options)
     # load old jobs
     with open('jobs.json', 'r') as job_json:
@@ -116,10 +116,14 @@ def scrape_indeed(result):
         for location in locations:
             page = 0
             driver.get(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&start={page}')
+            total_height = int(driver.execute_script("return document.body.scrollHeight"))
             driver.implicitly_wait(3)
             html = driver.page_source
             soup = BeautifulSoup(html, 'html.parser')
-            
+            for i in range(1, total_height, random.randint(30, 250)):
+                driver.execute_script("window.scrollTo(0, {});".format(i))                
+                time.sleep(random.randint(1,3))
+
             while True:
                 titles = get_titles(soup, include, must_include, exclude)
                 links = get_links(titles)
@@ -143,7 +147,7 @@ def scrape_indeed(result):
                             print(f'{titles[i].get_text().strip()} (Indeed)')
 
                 # if no next page
-                time.sleep(random.randint(1,4)) # adding this to hopefully not get IP banned
+                time.sleep(random.randint(4,8))
                 if not driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div/div[5]/div/div[1]/nav/ul/li[6]/a'):
                     break
         

@@ -5,7 +5,20 @@ import time
 import random
 import json
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Accept-Encoding": "gzip, deflate, br, zstd",
+    "DNT": "1",
+    "Sec-GPC": "1",
+    "Connection": "keep-alive",
+    "Cookie": "lang=v=2&lang=en-us; bcookie=\"v=2&5cb00512-25e8-4989-8f32-711eedfdc852\"; lidc=\"b=VGST02:s=V:r=V:a=V:p=V:g=3322:u=1:x=1:i=1725381878:t=1725468278:v=2:sig=AQHV2Pn4ByJLDdWX7rhiHiNVk4yFFDkG\"; JSESSIONID=ajax:2214832604298158333; bscookie=\"v=1&202409031644388c4e8faf-f0af-4ddf-88f3-7a91901715e8AQG-DK1yJm1GTlse5COIjzJDiZI7e6e6\"",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "TE": "trailers"
 }
 def load_config():
     with open('config.json') as file:
@@ -88,7 +101,7 @@ def scrape_linkedin(result):
     jobs = clear_old_jobs(jobs, age_limit)
     old_count = len(jobs["jobs"])
     for query in queries:
-        time.sleep(random.randint(5,8))
+        time.sleep(random.randint(10,20))
         for location in locations:
             print(f'query: {query}, location: {location}')
             page = 0
@@ -96,7 +109,7 @@ def scrape_linkedin(result):
             soup = BeautifulSoup(html.text, 'html.parser')
             links = soup.find_all('a')
             while len(links) > 0:
-                time.sleep(random.randint(6,15))
+                time.sleep(random.randint(5,20))
                 titles = get_titles(soup, include, must_include, exclude)
                 links = get_links(titles)
                 locations = get_locations(titles)
