@@ -88,4 +88,4 @@ Example:
 ## Note
 - Random delays have been added to prevent the script from immediately being blocked. I might implement proxy switching eventually.
 - Indeed might flag you as a bot for a little bit if this runs too much. It'll go away if you visit the site yourself and click the Cloudflare button to verify yourself enough times.
-- The LinkedIn API seems to have some limit on the amount of requests that can be made over an unknown period of time. 
+- ~~The LinkedIn API seems to have some limit on the amount of requests that can be made over an unknown period of time.~~ Actually now it seems to require the cookies of a LinkedIn account to access the API. I'm not sure how I should handle that is at the moment. So I guess for now this is just an Indeed scraper.
