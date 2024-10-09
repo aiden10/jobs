@@ -96,8 +96,8 @@ def write_jobs(jobs, old_jobs):
 
 def merge_jobs(linkedin_jobs, indeed_jobs):
     all_jobs = {"jobs": {}}
-    all_jobs["jobs"].update(linkedin_jobs["jobs"])
-    all_jobs["jobs"].update(indeed_jobs["jobs"])
+    if len(linkedin_jobs) > 0: all_jobs["jobs"].update(linkedin_jobs["jobs"])
+    if len(indeed_jobs) > 0: all_jobs["jobs"].update(indeed_jobs["jobs"])
     return all_jobs
 
 def scrape_indeed(result):
@@ -111,7 +111,6 @@ def scrape_indeed(result):
 
     jobs = clear_old_jobs(jobs, age_limit)
     old_count = len(jobs["jobs"])
-
     for query in queries:
         for location in locations:
             page = 0

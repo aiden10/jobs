@@ -4,22 +4,7 @@ import requests
 import time
 import random
 import json
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8",
-    "Accept-Language": "en-US,en;q=0.5",
-    "Accept-Encoding": "gzip, deflate, br, zstd",
-    "DNT": "1",
-    "Sec-GPC": "1",
-    "Connection": "keep-alive",
-    "Cookie": "lang=v=2&lang=en-us; bcookie=\"v=2&5cb00512-25e8-4989-8f32-711eedfdc852\"; lidc=\"b=VGST02:s=V:r=V:a=V:p=V:g=3322:u=1:x=1:i=1725381878:t=1725468278:v=2:sig=AQHV2Pn4ByJLDdWX7rhiHiNVk4yFFDkG\"; JSESSIONID=ajax:2214832604298158333; bscookie=\"v=1&202409031644388c4e8faf-f0af-4ddf-88f3-7a91901715e8AQG-DK1yJm1GTlse5COIjzJDiZI7e6e6\"",
-    "Upgrade-Insecure-Requests": "1",
-    "Sec-Fetch-Dest": "document",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Site": "none",
-    "Sec-Fetch-User": "?1",
-    "TE": "trailers"
-}
+
 def load_config():
     with open('config.json') as file:
         config = json.load(file)
@@ -93,49 +78,58 @@ def clear_old_jobs(jobs, age_limit):
 
 def scrape_linkedin(result):
     queries, locations, include, must_include, exclude, age_limit, distance = load_config()
-
-    # load old jobs
-    with open('jobs.json', 'r') as job_json:
-        jobs = json.load(job_json)
-
+    cookies_list = json.load(open("cookies.json"))
+    headers_list = json.load(open("headers.json"))["headers"]
+    cookies = {}
+    headers = {}
+    for cookie in cookies_list:
+        cookies.update(cookie)
+    for header in headers_list:
+        headers.update(header)
+    jobs = json.load(open("jobs.json"))
+    
     jobs = clear_old_jobs(jobs, age_limit)
     old_count = len(jobs["jobs"])
-    for query in queries:
-        time.sleep(random.randint(10,20))
-        for location in locations:
-            print(f'query: {query}, location: {location}')
-            page = 0
-            html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start=0', headers=headers)
-            soup = BeautifulSoup(html.text, 'html.parser')
-            links = soup.find_all('a')
-            while len(links) > 0:
-                time.sleep(random.randint(5,20))
-                titles = get_titles(soup, include, must_include, exclude)
-                links = get_links(titles)
-                locations = get_locations(titles)
-                dates = get_dates(titles)
-                page += 1
-                
-                for i in range(len(titles)):
-                    new_job = {
-                        titles[i].get_text().strip(): {
-                            "link": links[i],
-                            "location": locations[i],
-                            "date": dates[i],
-                            "new": True
-                        }
-                    }
-                    # only add jobs within the age limit
-                    # don't add if it already exists
-                    if new_job[titles[i].get_text().strip()]["date"] != 'failed to fetch date':
-                        if (datetime.today() - datetime.strptime((new_job[titles[i].get_text().strip()])["date"], '%Y-%m-%d')).days < age_limit: 
-                            jobs['jobs'].update(new_job) 
-                            print(f'{titles[i].get_text().strip()} (LinkedIn)')
-
-                html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start={page}', headers=headers)
+    try:
+        for query in queries:
+            time.sleep(random.randint(3,8))
+            for location in locations:
+                print(f'query: {query}, location: {location}')
+                page = 0
+                html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start=0', cookies=cookies, headers=headers)
+                print(html.text)
                 soup = BeautifulSoup(html.text, 'html.parser')
                 links = soup.find_all('a')
+                while len(links) > 0:
+                    time.sleep(random.randint(3,8))
+                    titles = get_titles(soup, include, must_include, exclude)
+                    links = get_links(titles)
+                    locations = get_locations(titles)
+                    dates = get_dates(titles)
+                    page += 1
+                    
+                    for i in range(len(titles)):
+                        new_job = {
+                            titles[i].get_text().strip(): {
+                                "link": links[i],
+                                "location": locations[i],
+                                "date": dates[i],
+                                "new": True
+                            }
+                        }
+                        # only add jobs within the age limit
+                        # don't add if it already exists
+                        if new_job[titles[i].get_text().strip()]["date"] != 'failed to fetch date':
+                            if (datetime.today() - datetime.strptime((new_job[titles[i].get_text().strip()])["date"], '%Y-%m-%d')).days < age_limit: 
+                                jobs['jobs'].update(new_job) 
+                                print(f'{titles[i].get_text().strip()} (LinkedIn)')
 
+                    html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start={page}', cookies=cookies, headers=headers)
+                    soup = BeautifulSoup(html.text, 'html.parser')
+                    links = soup.find_all('a')
+        
+    except KeyboardInterrupt:
+        print("exited early")
     new_count = len(jobs["jobs"])
     print(f'Found {abs(old_count - new_count)} new jobs on LinkedIn')
 
