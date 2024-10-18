@@ -1,44 +1,21 @@
-import requests
 from bs4 import BeautifulSoup 
-import time
-import random
-"""
-Get html of followers and following 
-Parse them
-Get names in lists for both
-See which names are in following and not in followers
-"""
-# headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"}
-# html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=student&location=Waterloo, ON&distance=50&start=0', headers=headers)
-# soup = BeautifulSoup(html.text, 'html.parser')
-# links = soup.find_all('a')
-# page = 0
-# print(f'{len(links)} links found on page {page}')
+from datetime import datetime, timedelta
+import re
 
-# while len(links) > 0:
-#     wait = random.randint(8, 20)
-#     print(f'waiting for {wait} seconds')
-#     page+=1
-#     time.sleep(wait)
-#     print(f'{len(links)} links found on page {page}')
-#     html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=student&location=Waterloo, ON&distance=50&start={page}', headers=headers)
-#     soup = BeautifulSoup(html.text, 'html.parser')
-#     links = soup.find_all('a')
-
-followers = []
-following = []
-with open('followers.html', encoding='utf8') as html:
-    soup = BeautifulSoup(html.read(), 'html.parser')
-    f = soup.find_all("span", {"class": "_ap3a _aaco _aacw _aacx _aad7 _aade"})
-    for fo in f:
-        followers.append(fo.get_text())
-
-with open('following.html', encoding='utf8') as html:
-    soup = BeautifulSoup(html.read(), 'html.parser')
-    f = soup.find_all("span", {"class": "_ap3a _aaco _aacw _aacx _aad7 _aade"})
-    for fo in f:
-        following.append(fo.get_text())
-
-for follow in following:
-    if follow not in followers:
-        print(follow)
+date_format = '%Y-%m-%d'
+today = datetime.today()
+with open("testpage.htm", "r", encoding="utf-8") as file:
+    soup = BeautifulSoup(file.read(), "html.parser")
+    titles = soup.select("span[title]")
+    for title in titles:
+        if "Software Developer Student - 4 or 8 Month Winter Term" in title:
+            parent = title.find_parent('td', {'class': 'resultContent css-lf1alc eu4oa1w0'})
+            job_seen_beacon = parent.find_parent('div', {'class': "job_seen_beacon"})
+            date_info = job_seen_beacon.find('span', {'class': 'css-1yxm164 eu4oa1w0'}).text.replace('+', '')
+            days_info = re.sub('\D', '', date_info)
+            if days_info.isdigit() and len(days_info) > 0:
+                date_t = timedelta(days=int(days_info))
+                final_date = (today - date_t).strftime(date_format)
+            else: 
+                print(f"failed to get date for {title.get_text().strip()}: defaulting to today's date")
+                final_date = today.strftime(date_format) 

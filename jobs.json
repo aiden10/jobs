@@ -1,255 +1,69 @@
 {
     "jobs": {
-        "Web Content Author Student - 4 or 8 Month Fall Term": {
-            "link": "https://ca.indeed.com/rc/clk?jk=3e2cd6fa75dea1df&bb=Qf8MbFbY1CyEsV_C-yOBxY0Pi0R2SHhoABr1IBWy3w9pXMJgFL7g_MbHXKQjitAerL-JeWX9LajAbnN2scqjJJdwyPRpse0ev72vaA8mfOyVINHdlZcRibMPKWclpQpB&xkcb=SoB567M37cznPeyC1J0BbzkdCdPP&fccid=a311d3f78a9495c2&vjs=3",
-            "location": "Waterloo, ON",
-            "date": "2024-09-24",
-            "new": false
-        },
-        "Senior Industry and Student Recruitment Officer, Technology": {
-            "link": "https://ca.indeed.com/rc/clk?jk=6a901c709fb76d63&bb=ABfz_QheUju70ERd_1Eay7z42URbLCPrMcPd0FgY7lt0md12v1OcVgJ7rJmf50Q3rqGxibXSo3KWaMjEet8SCH67eSF9fac_nNzO8mqHBQeWM5H1lh1U4e7i0eVOUoCM&xkcb=SoDT67M37Rs3XuyNhR0ObzkdCdPP&fccid=65c160dd267ca545&vjs=3",
-            "location": "Hybrid work in Toronto, ON",
-            "date": "2024-09-21",
-            "new": false
-        },
-        "2025 Winter Co-Op - Data Insights": {
-            "link": "https://ca.indeed.com/rc/clk?jk=bbecbe62f0867cf0&bb=3fePLb_k3ZH9o7JtYxvMrXJNPh2Xgy88nrgEEhoFKQayQqubnGId1IxUQOho58Cbt_7K0oy81EqVJq5l4LYQs0zuEc4TvBCZZAd9AKH5-nAMEcMC8B3NhA%3D%3D&xkcb=SoAo67M37c0eUNRbph0ObzkdCdPP&fccid=116680a29a847a70&vjs=3",
-            "location": "Oshawa, ON",
-            "date": "2024-09-23",
-            "new": false
-        },
-        "Co-op Winter 2025 - Systems Integration Engineer - 8 Months": {
-            "link": "https://ca.indeed.com/rc/clk?jk=3a8126992903b08e&bb=_2SbyTNiTJZdDxaCf78aVsrESH2Bgb-ggI_pL3gJOEOcrIW2ZMVEE1yKtXTS-Qpi-2W3-Hf_Z9A4ddyzr7CSDrIGLUKRvqv32WTEy_YFbT3ymrL9tKdsNrg-vMs3gLMv&xkcb=SoAi67M37Rt9yU0rHJ0EbzkdCdPP&fccid=382dee2cfe0ba124&vjs=3",
-            "location": "Ottawa, ON",
-            "date": "2024-09-22",
-            "new": false
-        },
-        "Co-op/Intern Curriculum Developer": {
-            "link": "https://ca.indeed.com/rc/clk?jk=b996adb5f392b99d&bb=1HoPQOw5FIuEpF2Mkq3C16WDDON3fS1RSGCG3Ar5D3to8piwfluEuu9Hfz3uGLCNG1GQYNbxZwHpdU30vA5qdlmTbNkCROv2h-wZgdYexF7zmvmMytHH1v4KPGykfZUL&xkcb=SoDv67M37Rt8GTQH2p0ObzkdCdPP&fccid=2b42faad345a6de3&vjs=3",
-            "location": "Hybrid work in Ottawa, ON",
-            "date": "2024-09-21",
-            "new": false
-        },
-        "Cloud RAN 5G vDU Mgmt and Control Coop": {
-            "link": "https://ca.indeed.com/rc/clk?jk=c513622d4daae49b&bb=7biDjdPqofI337M2_PIS6VXXZzbwxQsWFm0kqSRKi5kQYJ0mbMv_Ub9yhkdmQSvX3Cjoty3N2i2RLAPtmjRucY4XmkrdchSNiRdaGSpP_-g1pODq_INAug%3D%3D&xkcb=SoA_67M37c05zpSC1J0AbzkdCdPP&fccid=82656d64a9a3e6a7&vjs=3",
-            "location": "Ottawa, ON",
-            "date": "2024-09-24",
-            "new": false
-        },
-        "Co-op Winter 2025 - DevOps Engineering - 8 Months": {
-            "link": "https://ca.indeed.com/rc/clk?jk=b0d3429cdb7544bd&bb=YaTpPYe14nCFmEtZlU4Y6nTQS0zE3qaZxrrryusggUH_meJRbyvHFeA9knzxIXBa6EfpBjK43BgwZqHml3cwWSivdYHx8Gkx6OvBBeskZYHtFhEuq1I7BjpgL5j2luA8&xkcb=SoCy67M37Rt4X6WEqZ0AbzkdCdPP&fccid=382dee2cfe0ba124&vjs=3",
-            "location": "Ottawa, ON",
-            "date": "2024-09-23",
-            "new": false
-        },
-        "IT Desk Intern (Co-Op)": {
-            "link": "https://ca.indeed.com/rc/clk?jk=87ff43ce739ec577&bb=4_GlMj0eE20cGtrUd_pGPx0qOdkL0DRGN4CfSLsgCdGQqFO8e1vlOH65ttlzEElMQ7LgjS-xkS69T-8NcEaxWykMTThRVen2SoWZln1-ivCXBFdxtUPlmD2Lu4su1sDM&xkcb=SoCE67M37c0-T4XzR50GbzkdCdPP&fccid=f040d89f5311dfe7&vjs=3",
-            "location": "Kanata, ON",
-            "date": "2024-09-26",
-            "new": true
-        },
-        "Intern / Co-Op \u2013 Data/Computer Science - University of Waterloo and University of Toronto": {
-            "link": "https://ca.indeed.com/rc/clk?jk=a710bb8e10f4962f&bb=zAgUH0N6tWhJvMOx6_2SPeH5MLAnx968Yy-flx_rzm8JXUItxcN6b7y-vmZU7chSAVCr55nSGJpp-dRr9GYj1l-gsil_EapAUyUO3oJZNtkcN-5KYyKAWmNQ_2lPEMVg&xkcb=SoAK67M37czmRF3Yj50KbzkdCdPP&fccid=bd76dce80af676b9&vjs=3",
+        "Co-op Job Developer": {
+            "link": "https://ca.indeed.com/rc/clk?jk=c97e17e723092cc6&bb=Dlv66AREYyh8bh3Fp3n_nTd709YoiBOctQjWyyRF8k_V6NToYnv5s9gQyxQUt4sghfpceA2DW3lP6ighpoGmR3F7VrGioLvkh2v1A8OpCS7HfLpLWkqgq9szr1SI3bTZ&xkcb=SoCR67M36O22XpTb6B0ObzkdCdPP&fccid=8f1ed8483e2c0e4b&vjs=3",
             "location": "Guelph, ON",
-            "date": "2024-09-25",
+            "date": "2024-10-16",
             "new": true
         },
-        "Building Systems Student": {
-            "link": "https://ca.indeed.com/rc/clk?jk=4ecc614487db7660&bb=-FRBflZzl-L9sB96ZLTUQXkj2FICz5yzDYVZcOK5ge-PkHpNvyPtkE-wniwO6QW86COkia4As2ZAbXgJYXPKf2NSKGm4o3foFMvZ8xtklGUDHg74_FuECReRyQict3W3&xkcb=SoAt67M37c0nzb3Vl50CbzkdCdPP&fccid=73c309830cebe205&vjs=3",
-            "location": "Ottawa, ON",
-            "date": "2024-09-27",
-            "new": true
-        },
-        "Quality and Data Application Student (Co-Op)": {
-            "link": "https://ca.indeed.com/rc/clk?jk=4dad28ce57ba43d9&bb=BT8D_vFpZkHsTDtY1yTsKORLfATsbInxe9S9pL59YEMeGhxp8RaCmvc-lcJhmIJf8DlQ9RoKs3GaHYWnUUr1CXQOR5bvNLxKzh6pB4jyVq4zmqQcC9X6b5RXjz7ZBsoL1CszIoCpFy4%3D&xkcb=SoCT67M37cz2IBg9ur0CbzkdCdPP&fccid=b84281cf01da9763&cmp=York-Region-Children%2527s-Aid&ti=Quality+and+Data+Application+Student+%28co-op%29&vjs=3",
-            "location": "Hybrid work in Newmarket, ON",
-            "date": "2024-09-24",
-            "new": true
-        },
-        "ESG Data & Reporting Student (4 months) - Winter 2025": {
-            "link": "https://ca.indeed.com/rc/clk?jk=d2afbac681074a44&bb=BT8D_vFpZkHsTDtY1yTsKDIcdesAa2Wkv3cWm0ckIJDvT6x3ftSzVI1DlxIbLZq6bnWDa9NYib7x9qQ796eXmTyi24mX7aPMpDOFub2Mv92Yx8lV8i8gEbFJq4XkciGP&xkcb=SoC667M37cz2IBg9ur0AbzkdCdPP&fccid=a58da481472b4bfd&vjs=3",
+        "Co-op or Intern, Technology - Customer Experience (January 2025)": {
+            "link": "https://ca.indeed.com/rc/clk?jk=699735c208e11135&bb=CvKAU3duKZ6u-PnCbPvy9ovt8d4idPDefc7B7lZ1m2yitpMRfZ5GkCGWp9AhgGO-X3XJNNpal_VZOml2nk7xY4QvPWNu5Gz5vEnntaPyybPd4JYSGKy-nPasCVjoZhgN&xkcb=SoBx67M36O3YKc20IR0IbzkdCdPP&fccid=3639654bd4055c70&vjs=3",
             "location": "Toronto, ON",
-            "date": "2024-09-28",
+            "date": "2024-10-18",
             "new": true
         },
-        "Student Intern, Data Warehouse Developer": {
-            "link": "https://ca.indeed.com/rc/clk?jk=8fb8f075b0a1de6a&bb=0jrDNJyi1LasrzdhP55teYJdk1_cAhNqzrZUI4NeYl4ISGxcS1C94zYv_AChuPLL9oHotNh2uQLEJaO5cFpHAgnhcNHt9OBDjGRevM0KGNZuf3bUI05Ruw%3D%3D&xkcb=SoB467M37cz1DBzbyR0ObzkdCdPP&fccid=e7e593a18b26fee3&vjs=3",
+        "Student Intern, IT Application Associate": {
+            "link": "https://ca.indeed.com/rc/clk?jk=ad2d5a7ef8e54b05&bb=UuMi844QIxT3oJirjA6VxPhVIFFcMPt4KdGZLjDM4yZ3Cxoreyg6cFAk59yeUW-iLoHuuV157cX88YZwQsSZ15z33TRumIZd0kU_pENnkfyVO4gDcXBjzw%3D%3D&xkcb=SoDo67M36O3WFMWoJh0KbzkdCdPP&fccid=e7e593a18b26fee3&vjs=3",
             "location": "Hybrid work in Toronto, ON",
-            "date": "2024-09-27",
+            "date": "2024-10-17",
             "new": true
         },
-        "IT Help Desk Co-op": {
-            "link": "https://ca.indeed.com/rc/clk?jk=2899146fae3d4a4e&bb=8r1wT2FfOWmUb8RruwTnYRwY0HXezl9c23RbZWieiKXPGSX5_ndL7HUSaCEelitFfFg3XsXABQV4pECLu1MhzDj_yUOlVCjRSqrgpaTMNHo_81uIqhPcUgCzUjHjWI5z&xkcb=SoAJ67M37czy2NyC1J0PbzkdCdPP&fccid=254ad00cf333484f&vjs=3",
-            "location": "Newmarket, ON",
-            "date": "2024-09-26",
-            "new": true
-        },
-        "Front-End Developer Co-op (May 2025 - 16 months)": {
-            "link": "https://ca.indeed.com/rc/clk?jk=2cd888d3542b3e0c&bb=8r1wT2FfOWmUb8RruwTnYQ_cp1lFrK8gHr2O8yolZmq2S9hjImTdy_4QSnh5tawxTQWcX3OPCTXgp5zJFEivm9j1BRdFw90UjVyNL_meikPGRFIZBkIqrw%3D%3D&xkcb=SoDJ67M37czy2NyC1J0CbzkdCdPP&fccid=de71a49b535e21cb&vjs=3",
+        "FY25 Intern - Display System Software Engineering Internship - Canada (12 or 16 months)": {
+            "link": "https://ca.indeed.com/rc/clk?jk=f1af9065ba57147c&bb=TLinvROZCC0l0mTHDH7myguOkEros3DfFuXVW_xbFumzLZQfeV8rfJtDcFXowQ-cvQ4L0SsLGs6BECRfpQdD0oCwMGdTesDCo4JGxIHfUpdFgZPHZNEKEg%3D%3D&xkcb=SoBm67M36O3USx20IR0FbzkdCdPP&fccid=d40ebe11fc879426&vjs=3",
             "location": "Markham, ON",
-            "date": "2024-09-26",
+            "date": "2024-10-15",
             "new": true
         },
-        "Software Developer Co-op (Winter 2025 - 4 Months)": {
-            "link": "https://ca.indeed.com/rc/clk?jk=8126dbc5bb57aead&bb=CC_Fu3OjS8-SZ63pxezjuxtBKteLNSFXevt8W8vhE8NUSoeeFnVMJ4TEjXmpbVRRvFb_IsphQqIbL3cWQNHQTxGcf2XsJE3958wlN83RxHTNe9wCouwftg%3D%3D&xkcb=SoAF67M37czxTeTbyR0AbzkdCdPP&fccid=9784ae78e9834539&vjs=3",
+        "Software Engineer Intern (Toronto) - Summer 2025": {
+            "link": "https://ca.indeed.com/rc/clk?jk=29feca90cf484a8a&bb=XnRbVqL5za6xFPrSu5L5RkQKIMouayPJxB8rYyeX9Yequd2MXEMpilqXkk8Pio_4hbffqGT_tOWmtWref4w4A0a71QlsDXTfIalmZTjdoiSaThAP17XzZyyd4XnFhpQq&xkcb=SoD967M36O3TR-zb6B0FbzkdCdPP&fccid=de6a7f640562b0c1&vjs=3",
             "location": "Toronto, ON",
-            "date": "2024-09-25",
+            "date": "2024-10-18",
             "new": true
         },
-        "Software Developer Intern (January or May 2025 - 8-16 months)": {
-            "link": "https://ca.indeed.com/rc/clk?jk=0d2395c42a9d2b54&bb=m2AzBoffn1-f80NIFyHAEOqJdTWzBzg34Fw-JduNjhIXPzDWfKjog0h-Zh0LpGitHzZcdmgwrCzqenBfqRfQgOsqrJoDpxY3u_QCdGKHQuf5-wkUKI4Ppw%3D%3D&xkcb=SoDP67M37czw6AA6Qj0PbzkdCdPP&fccid=de71a49b535e21cb&vjs=3",
+        "Co-op Student Controls Systems Engineer": {
+            "link": "https://ca.indeed.com/rc/clk?jk=905b36f025751b9a&bb=XnRbVqL5za6xFPrSu5L5RqhA8mM_37nlDGeoHqxFIuUBZmBit4vAXT59u0hWaHsvfpVc6ePT0i-e11aAvg9zxQjbe7KEm_4o6X4WcAGsUqt04lptHgU8_g%3D%3D&xkcb=SoBa67M36O3TR-zb6B0AbzkdCdPP&fccid=116680a29a847a70&vjs=3",
+            "location": "Oshawa, ON",
+            "date": "2024-10-15",
+            "new": true
+        },
+        "FY25 Intern - Embedded Software Engineering Intern - Canada (12 or 16 months)": {
+            "link": "https://ca.indeed.com/rc/clk?jk=fecd675fdeddd3e3&bb=XnRbVqL5za6xFPrSu5L5RmFgenKcNcwXmZ4GR9dZiUWmz0AiqDS-FkyK0R59qVS4VrB51Z0VEvhtfKYTPUz7Mk4McCGPnNegCla-oslzlbvMnuG7Mnzwmg%3D%3D&xkcb=SoBg67M36O3TR-zb6B0GbzkdCdPP&fccid=d40ebe11fc879426&vjs=3",
             "location": "Markham, ON",
-            "date": "2024-09-26",
+            "date": "2024-10-15",
             "new": true
         },
-        "Data Analyst Intern/Co-Op (Undergrad | Summer, 2025 | Onsite/hybrid)": {
-            "link": "https://ca.indeed.com/rc/clk?jk=1c3bcb976697bf53&bb=m2AzBoffn1-f80NIFyHAEFFTILeD0c-Igz2xHn_6FNgp_8gMyMqkpE7F7a2PDfbhqXsup1giyyPImR6ciB92_l2xp8ovgRXqeB26zVDAItkiKMoQHR19kIeWCPIiJofV&xkcb=SoB767M37czw6AA6Qj0ObzkdCdPP&fccid=b45c4b5a9c9a7448&vjs=3",
-            "location": "Markham, ON",
-            "date": "2024-09-25",
-            "new": true
-        },
-        "QA Analyst co-op": {
-            "link": "https://ca.indeed.com/rc/clk?jk=0138e4e344a7b225&bb=m2AzBoffn1-f80NIFyHAEJ6CD0blGCai4TfnXbjl8FTH1Nia4i9TZYyuikWhNK0S3xKP0pcXkZK29lkwdrjnRTG9wJ4qDCbF4ExOkUCVwMv3ASTHwd2Bog%3D%3D&xkcb=SoAP67M37czw6AA6Qj0CbzkdCdPP&fccid=f99648405c7e9e3a&vjs=3",
-            "location": "Toronto, ON",
-            "date": "2024-09-26",
-            "new": true
-        },
-        "Technology Software Engineer Intern - Winter 2025": {
-            "link": "https://ca.indeed.com/rc/clk?jk=30750435f0fb5fbc&bb=-5mo3dRG0aB3pOGsBK0ZoGbpL6M5y03ubJn61DsQbWZ_cVUY3IR2w5Qp_dPLPfon9UBhHnHlucDc9rFmmJT4ClwhHHgXdxIEpHLZtMj2jVMgdyM_qMgJCQ%3D%3D&xkcb=SoAF67M37c0MY2zbyR0FbzkdCdPP&fccid=f057e04c37cca134&vjs=3",
-            "location": "Toronto, ON",
-            "date": "2024-09-25",
-            "new": true
-        },
-        "Student Intern, Smart Energy - Pricing Management and Product Data Analysis": {
-            "link": "https://ca.indeed.com/rc/clk?jk=dda904e8a617b40a&bb=s0C5IUFvE5hK1UFglrPjA7jEVvkm1n2q1qinkPqnVHwnAel72uNGuPLdw9IL4D459KUN5O9dn6CCAlMjACIVDRHfzxaDRL1gJ9wz1PIgcY7ioyvUf_hNtw%3D%3D&xkcb=SoCD67M37c0LCi3zRJ0CbzkdCdPP&fccid=e7e593a18b26fee3&vjs=3",
+        "Global Technology Strategy Intern (Student Position)": {
+            "link": "https://ca.indeed.com/rc/clk?jk=4fb26d4c5f67f7f1&bb=wR54ssEy2NwPy8U1mFc-T4tIivD95WuxzPAa0mFeDA2R01qbczQjukm3oRvQ1k7bwRzmG0nOPFU3BB5XOWwtfYmTE_6rEyBHGT_oefFWEOij-pEX7lZ0Q4bsduh-bIqS&xkcb=SoBH67M36O3vglWoJh0HbzkdCdPP&fccid=1d6ec442ed82ef80&vjs=3",
             "location": "Hybrid work in Toronto, ON",
-            "date": "2024-09-27",
+            "date": "2024-10-18",
             "new": true
         },
-        "Application Software Developer Co-op (Commercial Banking, Payments & Wealth Technology - 4 months co-op)": {
-            "link": "https://ca.indeed.com/rc/clk?jk=3e3dab5e1100de77&bb=w9w56yotnposTUB9g8e31kPoJfO6gH-TNMLhhFYsmswP8stQ0LyR4srzyIBb2H33_cyzRCYzNoS9cAarLTVUt9g99plnDOibmLKUZCKUR7rA-Dh3hgV6oA%3D%3D&xkcb=SoBp67M37c0JPPTbyR0BbzkdCdPP&fccid=f99648405c7e9e3a&vjs=3",
-            "location": "Toronto, ON",
-            "date": "2024-09-26",
-            "new": true
-        },
-        "Student Intern, Product Data Management and Material Pricing": {
-            "link": "https://ca.indeed.com/rc/clk?jk=89ddf4baa1aea083&bb=Ab-x-G74QPSl2-CDAXvNsZoFpTul1ap5H_sQD6oCFuTcabkDqBC-Qjeegb2aCWo3Sp6DmAJgxvwEifeEcjJVMU2cUlXyok24SE9DfNH6vkpiTRkkDz_Cjw%3D%3D&xkcb=SoAX67M37c0IeAxbph0DbzkdCdPP&fccid=e7e593a18b26fee3&vjs=3",
+        "Student Intern, IT Solutions": {
+            "link": "https://ca.indeed.com/rc/clk?jk=223d74782f85cb34&bb=REk-zQ7kQZu9-kD1TDeO4M0w9sRjHDan-vmF_UiCIkBn_f8ArIihe6BcTm6RGKnGHQkI2hxKkfi-GNgztTeOq4fzMM9kSS5eTupEmnnzeu3v-IVytxaL0w%3D%3D&xkcb=SoA667M36O3tggRM5Z0AbzkdCdPP&fccid=e7e593a18b26fee3&vjs=3",
             "location": "Hybrid work in Toronto, ON",
-            "date": "2024-09-25",
+            "date": "2024-10-12",
             "new": true
         },
-        "Software Analyst - Intern": {
-            "link": "https://ca.indeed.com/rc/clk?jk=8fcc2706b319e57e&bb=MmK-gnV_Xrl3sA6wuuRSvnhSFskJRzvkmTXXzIvlL0fj-vtlb8DO1DhzQcoAsaXzOTn6Lqig7Uodjbts5Yc-2qbWp3koba8Zv5y9cunlBbpuGp_lKPtHeTcbVsrdJQkb&xkcb=SoAc67M37c0G-aXVl50DbzkdCdPP&fccid=b920aab5fd60595d&vjs=3",
-            "location": "Toronto, ON",
-            "date": "2024-09-25",
-            "new": true
-        },
-        "Software Analyst Intern (C, C++ and/or Java)": {
-            "link": "https://ca.indeed.com/rc/clk?jk=2f576d17977fbe93&bb=d5DB85PJE3vjF5AlMiMMonIOzYa4yaSH7nqJ8FWdEiD-7Y3adYSTKFKP7KQM68BGW7IU3c5Jxel9gB7_J55GIrVRpxTg9S6__8uU3shaKD1_rMxz5UKycugf6vLVRTRv&xkcb=SoCq67M37c0GDJSC1J0AbzkdCdPP&fccid=b920aab5fd60595d&vjs=3",
-            "location": "Toronto, ON",
-            "date": "2024-09-25",
-            "new": true
-        },
-        "Velocity - Software Engineer Internship/Co-Op - Winter 2025": {
-            "link": "https://ca.indeed.com/rc/clk?jk=40420429489975a5&bb=wAYZj9VsqIIf4sOjwmzBc5IzVkRWPmXnvtw-mAtA4ncYuj0V0XClTEUmQNi4DKWVwelGOsED2ybKx2131B_YJYg3BqGbfLD_wa42lN6D7wlvRO8ZdflBzA%3D%3D&xkcb=SoBG67M37c0EkwwByp0GbzkdCdPP&fccid=3002307a9e5b4706&vjs=3",
-            "location": "Toronto, ON",
-            "date": "2024-09-26",
-            "new": true
-        },
-        "Software Analyst Intern - Engineering Environment": {
-            "link": "https://ca.indeed.com/rc/clk?jk=d3c51725c1d73d04&bb=lD3VjPbVC8ZG6dAHy3vxlbS5KwJkg2IoCepm55Hu4mH67hQ6aPr8SqIqurGDDOqewnodBYTTBMgGJcMJycw5DhDzRlnIRAyjzdG7XkKJcCyWQ3pf7fgln0RsPGU_3fh5&xkcb=SoCC67M37c0DmIg9ur0abzkdCdPP&fccid=b920aab5fd60595d&vjs=3",
-            "location": "Toronto, ON",
-            "date": "2024-09-25",
-            "new": true
-        },
-        "Salesforce developer co-op": {
-            "link": "https://ca.indeed.com/rc/clk?jk=b4430c5012698a92&bb=9JdSFHJ-OHnuSl6MirIR6Nn_lOb_PbElsQpWKjwweym9OPzKevF-q_wdw2Mj1ImL7O33lrbGleCIlzgWRjnP5DHHYaSw4FCFIn6m2MeJvJ2bhiHv_vmRHA%3D%3D&xkcb=SoDH67M37c0DJNTbyR0PbzkdCdPP&fccid=f99648405c7e9e3a&vjs=3",
-            "location": "Toronto, ON",
-            "date": "2024-09-26",
-            "new": true
-        },
-        "Application Software Developer Co-op (8 months)": {
-            "link": "https://ca.indeed.com/rc/clk?jk=e327747a4435fca4&bb=SN0HChyaTPwLnxBNI3IoFO_h0x36G3zAcydVOu5GYKo2Zx8AXvZJzDJArCM5fEp_-HWwNB646tKqXEP_CIOgdlUCHNRw9equcJj98Ew6n39Fj9pD70c8Zg%3D%3D&xkcb=SoCl67M37c0de1XVl50KbzkdCdPP&fccid=f99648405c7e9e3a&vjs=3",
-            "location": "Toronto, ON",
-            "date": "2024-09-25",
-            "new": true
-        },
-        "Winter 2025 - Data Analyst Intern": {
-            "link": "https://ca.indeed.com/rc/clk?jk=7a0b4fe742bfbadc&bb=g9KLKxt8X_qMo5kWxf5ucL3Hs3p7eUeg_GFEBFvbI-QC1B-KoMv3tA3r6-jR4l4YPbZubNeIn2MKET9xM20mnLFhKaAGE_6Tt6hfd5G6u7kUKSfbgu8FQOInNePerJrv&xkcb=SoBD67M37c0cK9XYj50IbzkdCdPP&fccid=c7667defd48579dc&vjs=3",
-            "location": "Toronto, ON",
-            "date": "2024-09-27",
-            "new": true
-        },
-        "Velocity - Data Scientist Internship/Co-Op - Winter 2025": {
-            "link": "https://ca.indeed.com/rc/clk?jk=1dbdd716c499dc2c&bb=PcELESvLxy6vFQ_pyx3urf2K0VKy0114M8Fvwa1t-UT_t--KxfjIzDz3X4Rw9rVClsZUuJ1xS8Wy7RdHY_1ZGHkoFM2z_5Ei2QKIIk9OPwl1G4sE2FQOgA%3D%3D&xkcb=SoDa67M37c0VlxXzR50MbzkdCdPP&fccid=3002307a9e5b4706&vjs=3",
-            "location": "Toronto, ON",
-            "date": "2024-09-26",
-            "new": true
-        },
-        "Velocity - Data Analyst Internship/Co-Op - Winter 2025": {
-            "link": "https://ca.indeed.com/rc/clk?jk=2df7155d8e2c912b&bb=dyAIrGs6VFJ31kUel0Me8UHVT3RZeg-KkBF-vesdN7X9YGcziSNDS_mJXtRlfU7kwpysP-rYTfirNePLGE5jvIZ7ObYJ3IfKOeH36IXFtwNWoknGT9Jqbw%3D%3D&xkcb=SoA567M37c0U3K3Yj50ObzkdCdPP&fccid=3002307a9e5b4706&vjs=3",
-            "location": "Toronto, ON",
-            "date": "2024-09-26",
-            "new": true
-        },
-        "IT Architect I - 16-Month Co-op/Internship (Summer 2025)": {
-            "link": "https://ca.indeed.com/rc/clk?jk=7b86a2411d07c79f&bb=k5WOnTvPEBod2TMzFRuL0ekqh7W1QuAanwj5kAzZawG8UmrX2l-j8vvZKKfrTv1Te2h7SuqIKNcHYAdb82zGfXgpWkFoTM8g-SOGO3lllhHJbaY9rcGReZIdQNPZqYMx&xkcb=SoCd67M37c0SzBA6Qz0NbzkdCdPP&fccid=a614b30520ebe6c9&vjs=3",
+        "Student Intern, Student Intern, IT Enterprise Platforms": {
+            "link": "https://ca.indeed.com/rc/clk?jk=2028cecc69d74603&bb=psuHl9MMormohIFGxAJMxtO9C5-XQoCLJWDEqtF79xzUDh8KFav0nsbIGZexcrNAG1NMIqxPG31LQ2WTLVO-YbReSvSUU_ctdy_Q4lrS7qpHcu4C3kQ1OA%3D%3D&xkcb=SoAx67M36O3jAQwpcx0BbzkdCdPP&fccid=e7e593a18b26fee3&vjs=3",
             "location": "Hybrid work in Toronto, ON",
-            "date": "2024-09-28",
+            "date": "2024-10-16",
             "new": true
         },
-        "Student Intern, Smart Energy - Account Focused, Pricing Management and Product Data Analysis": {
-            "link": "https://ca.indeed.com/rc/clk?jk=bf10d45c4b00e48f&bb=lClWAKAITnailcb1yUzqh9eDWYe0GKRHdWLoIHkDmSvJwDyu4E6dZo2kCJ0WJ4Vkgbhj9-zjBgh3AtAl7ttzBlBLR4L889qs_4Jhqw5Bz4eCq7d1PDoGnQ%3D%3D&xkcb=SoA267M37c0uaCTbyR0HbzkdCdPP&fccid=e7e593a18b26fee3&vjs=3",
-            "location": "Hybrid work in Toronto, ON",
-            "date": "2024-09-27",
-            "new": true
-        },
-        "Embedded Software Developer Co-op (4-16 months, January 2025)": {
-            "link": "https://ca.indeed.com/rc/clk?jk=68e5dc04a4f4744a&bb=f2Q3AxKJBoabAxyfZAXy4ZaMI6zW8BI7GDbyA2VNQA3JJrkuZNRaBj_pD0aezU3VA7_IbCE7VyFz0nLxcCjU0XPHrYsWY0mSpLyqy4yiJLKIR-QJa2UtHfYnSoNflBq0&xkcb=SoA667M37c0_oug6Qz0JbzkdCdPP&fccid=144a39be55e8440b&vjs=3",
-            "location": "Ottawa, ON",
-            "date": "2024-09-28",
-            "new": true
-        },
-        "Co-op/Intern Data Insights, PMO": {
-            "link": "https://ca.indeed.com/rc/clk?jk=b80432d685417947&bb=SJr0E5kjtxZEUn1clzNgnTidRUK3RovlnXBLtIQFuyHHaaL9Imzmmi5OLkBn2PJAgO911FIYFbK24P8yYHldXxuYnEYNRjq8U_D9_FuVCZwISqc67hSwXUcLk0B-YzED&xkcb=SoDb67M37c09rDRbph0FbzkdCdPP&fccid=2b42faad345a6de3&vjs=3",
-            "location": "Hybrid work in Ottawa, ON",
-            "date": "2024-09-24",
-            "new": true
-        },
-        "Data Visualization Designer Co-op": {
-            "link": "https://ca.indeed.com/rc/clk?jk=24225ef14661d759&bb=Db3U2JGKtyRvFQC00s8ky-GlgBSRpWEGcyWFpAoX_aAk36I-UuQnuR8ScEfFE3pjeHu-plNIo5nbPhmJbUnNF8ggnJZk9g7HEE43Fop7x-hy9b90GWCbrOmZj0GKrpsU&xkcb=SoAD67M37c07Q93zR50KbzkdCdPP&fccid=b4d2996574efff71&vjs=3",
-            "location": "Ottawa, ON",
-            "date": "2024-09-25",
-            "new": true
-        },
-        "Co-op/Intern Software Developer, Core Algorithms": {
-            "link": "https://ca.indeed.com/rc/clk?jk=3fd4684fe8d64dd1&bb=RR9XOnK29WAx9Ko4FlPB_9nP4TlRs74cOSdwXYQmmAI-7jo6PNb4SuDEWm6kUTJtMJa1pCDT2lDRnMP3NT4aPIbVlwpYbunmNIGUqV84BSqliCfj-08vgybfVMFS63ka&xkcb=SoDM67M37c06mewByp0PbzkdCdPP&fccid=2b42faad345a6de3&vjs=3",
-            "location": "Hybrid work in Ottawa, ON",
-            "date": "2024-09-26",
-            "new": true
-        },
-        "Co-op/Intern Software Developer, Algorithms, Quality": {
-            "link": "https://ca.indeed.com/rc/clk?jk=ba989fe1a1d98e16&bb=eo5MZVTm8hJjr33yJ9nzBrA-6Z7ddrR2uNfjI_0_TIbGXn9L-CXw0Om4onQltj7vZRIbThLM3Kq4a45GyQ7jju-raQWZzfrcyCwiQL4IKfS-aJRoEeIfxj5TluLK9SPp&xkcb=SoCf67M37c05EFyC1J0IbzkdCdPP&fccid=2b42faad345a6de3&vjs=3",
-            "location": "Hybrid work in Ottawa, ON",
-            "date": "2024-09-25",
-            "new": true
-        },
-        "Co-op/Intern Software Engineer, AI Platform": {
-            "link": "https://ca.indeed.com/rc/clk?jk=7297a40aa172cadc&bb=eo5MZVTm8hJjr33yJ9nzBtB4G_UnqKlbpbQ47dpfH-fzM6MZT-YCKpt_VuVye6ArJaUo5wyIE2bbPJRukiVxP3CvU3JwTFPYDWgiOL-pG4HEkQ2TtNzDeFT46koPEanL&xkcb=SoBf67M37c05EFyC1J0FbzkdCdPP&fccid=2b42faad345a6de3&vjs=3",
-            "location": "Hybrid work in Ottawa, ON",
-            "date": "2024-09-27",
-            "new": true
-        },
-        "Co-op/Intern Developer, Analytics Engine, Developer Framework": {
-            "link": "https://ca.indeed.com/rc/clk?jk=a90d75e2d64afdc6&bb=RnyeLMyfjD-ZDC7lZSKIf2Wq-I_TAdMwbSH_qCGwp3tj4RTZLB-hVxwHb1ez-y-XEU2JYMBFlBiOVzaE_NtKZgU6Sl3RNY_plRUCCrSQjVf_gTDLw1uOLvRmf6qtC2Vl&xkcb=SoAW67M37c04psTbyR0AbzkdCdPP&fccid=2b42faad345a6de3&vjs=3",
-            "location": "Hybrid work in Ottawa, ON",
-            "date": "2024-09-25",
-            "new": true
-        },
-        "Co-op/Intern Test Developer, Analytics Engine, Developer Framework": {
-            "link": "https://ca.indeed.com/rc/clk?jk=cefa5841bcfe487c&bb=zaDhDBQ31bUsCjrjpauGEHvMxx1vcd8DOYs65_1u-uSfTcoaxPKORIBsShLB5BzfTWkTL8MVgh7dta86k0UYVQddho-n2JIpP3oEDsVN-tIHlmBZdKbJd-Xoa48REo1S&xkcb=SoBl67M37c03owyC6p0ObzkdCdPP&fccid=2b42faad345a6de3&vjs=3",
-            "location": "Hybrid work in Ottawa, ON",
-            "date": "2024-09-25",
+        "Junior Software Developer Co-op": {
+            "link": "https://ca.indeed.com/rc/clk?jk=182328c98dd24b75&bb=6qXbXAkK9TboeKwyEMMIOAMMkRegh0mYgun8e-OPGZiSpuVJmLs9tGByefg6erPrSLQXFgo2TC47jGrpy-mqTYXa5KaxBPhzcaghM2E7oxKnm2aOQyssO0I4rGi5sxq0&xkcb=SoBt67M36O35E8yNk50DbzkdCdPP&fccid=271f4b71c532dd4b&vjs=3",
+            "location": "Mississauga, ON",
+            "date": "2024-10-17",
             "new": true
         }
     }

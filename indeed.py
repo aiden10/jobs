@@ -6,6 +6,7 @@ from selenium.webdriver.firefox.options import Options
 import json
 import random
 import time
+import re
 
 def load_config():
     with open('config.json') as file:
@@ -46,8 +47,9 @@ def get_links(titles):
 def get_locations(titles):
     locations = []
     for title in titles:
-        parent = title.find_parent('td', {'class': 'resultContent css-1qwrrf0 eu4oa1w0'})
-        location = parent.find('div', {'class': 'css-waniwe eu4oa1w0'}).text
+        parent = title.find_parent('td', {'class': 'resultContent css-lf1alc eu4oa1w0'})
+        child = parent.find('div', {'class': 'company_location css-i375s1 e37uo190'})
+        location = child.find('div', {'class': 'css-1restlb eu4oa1w0'}).text
         locations.append(location)
     return locations
 
@@ -56,11 +58,12 @@ def get_dates(titles):
     date_format = '%Y-%m-%d'
     for title in titles:
         today = datetime.today()
-        parent = title.find_parent('div', {'class': 'job_seen_beacon'})
-        date_info = parent.find('span', {'class': 'css-qvloho eu4oa1w0'}).text.replace('+', '')
-        days_ago = [int(s) for s in date_info.split() if s.isdigit()]
-        if len(days_ago) > 0:
-            date_t = timedelta(days=days_ago[0])
+        parent = title.find_parent('td', {'class': 'resultContent css-lf1alc eu4oa1w0'})
+        job_seen_beacon = parent.find_parent('div', {'class': "job_seen_beacon"})
+        date_info = job_seen_beacon.find('span', {'class': 'css-1yxm164 eu4oa1w0'}).text.replace('+', '')
+        days_info = re.sub('\D', '', date_info)
+        if days_info.isdigit() and len(days_info) > 0:
+            date_t = timedelta(days=int(days_info))
             final_date = (today - date_t).strftime(date_format)
         else: 
             print(f"failed to get date for {title.get_text().strip()}: defaulting to today's date")

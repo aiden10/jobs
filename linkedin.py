@@ -77,7 +77,7 @@ def clear_old_jobs(jobs, age_limit):
     return jobs
 
 def scrape_linkedin(result):
-    queries, locations, include, must_include, exclude, age_limit, distance = load_config()
+    queries, query_locations, include, must_include, exclude, age_limit, distance = load_config()
     cookies_list = json.load(open("cookies.json"))
     headers_list = json.load(open("headers.json"))["headers"]
     cookies = {}
@@ -93,10 +93,10 @@ def scrape_linkedin(result):
     try:
         for query in queries:
             time.sleep(random.randint(3,8))
-            for location in locations:
-                print(f'query: {query}, location: {location}')
+            for q_location in query_locations:
+                print(f'query: {query}, location: {q_location}')
                 page = 0
-                html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start=0', cookies=cookies, headers=headers)
+                html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={q_location}&distance={distance}&start=0', cookies=cookies, headers=headers)
                 soup = BeautifulSoup(html.text, 'html.parser')
                 links = soup.find_all('a')
                 while len(links) > 0:
@@ -123,7 +123,7 @@ def scrape_linkedin(result):
                                 jobs['jobs'].update(new_job) 
                                 print(f'{titles[i].get_text().strip()} (LinkedIn)')
 
-                    html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start={page}', cookies=cookies, headers=headers)
+                    html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={q_location}&distance={distance}&start={page}', cookies=cookies, headers=headers)
                     soup = BeautifulSoup(html.text, 'html.parser')
                     links = soup.find_all('a')
         
