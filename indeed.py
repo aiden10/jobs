@@ -47,7 +47,7 @@ def get_locations(titles):
     locations = []
     for title in titles:
         parent = title.find_parent('td', {'class': 'resultContent css-1qwrrf0 eu4oa1w0'})
-        location = parent.find('div', {'class': 'css-1p0sjhy eu4oa1w0'}).text
+        location = parent.find('div', {'class': 'css-waniwe eu4oa1w0'}).text
         locations.append(location)
     return locations
 
@@ -96,14 +96,16 @@ def write_jobs(jobs, old_jobs):
 
 def merge_jobs(linkedin_jobs, indeed_jobs):
     all_jobs = {"jobs": {}}
-    if len(linkedin_jobs) > 0: all_jobs["jobs"].update(linkedin_jobs["jobs"])
-    if len(indeed_jobs) > 0: all_jobs["jobs"].update(indeed_jobs["jobs"])
+    if linkedin_jobs:
+        if len(linkedin_jobs) > 0: all_jobs["jobs"].update(linkedin_jobs["jobs"])
+    if indeed_jobs:
+        if len(indeed_jobs) > 0: all_jobs["jobs"].update(indeed_jobs["jobs"])
     return all_jobs
 
 def scrape_indeed(result):
     queries, locations, include, must_include, exclude, age_limit, distance = load_config()
     options = Options()     
-    options.headless = True
+    options.headless = False
     driver = webdriver.Firefox(options=options)
     # load old jobs
     with open('jobs.json', 'r') as job_json:

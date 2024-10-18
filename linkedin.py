@@ -97,7 +97,6 @@ def scrape_linkedin(result):
                 print(f'query: {query}, location: {location}')
                 page = 0
                 html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&distance={distance}&start=0', cookies=cookies, headers=headers)
-                print(html.text)
                 soup = BeautifulSoup(html.text, 'html.parser')
                 links = soup.find_all('a')
                 while len(links) > 0:
