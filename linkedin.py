@@ -78,14 +78,13 @@ def clear_old_jobs(jobs, age_limit):
 
 def scrape_linkedin(result):
     queries, query_locations, include, must_include, exclude, age_limit, distance = load_config()
-    cookies_list = json.load(open("cookies.json"))
-    headers_list = json.load(open("headers.json"))["headers"]
+    
+    with open('cookies.json', 'r') as cookie_file:
+        cookies_data = json.load(cookie_file)
     cookies = {}
-    headers = {}
-    for cookie in cookies_list:
-        cookies.update(cookie)
-    for header in headers_list:
-        headers.update(header)
+    for cookie in cookies_data:
+        cookies[cookie['name']] = cookie['value']
+
     jobs = json.load(open("jobs.json"))
     
     jobs = clear_old_jobs(jobs, age_limit)
@@ -96,7 +95,7 @@ def scrape_linkedin(result):
             for q_location in query_locations:
                 print(f'query: {query}, location: {q_location}')
                 page = 0
-                html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={q_location}&distance={distance}&start=0', cookies=cookies, headers=headers)
+                html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={q_location}&distance={distance}&start=0', cookies=cookies)
                 soup = BeautifulSoup(html.text, 'html.parser')
                 links = soup.find_all('a')
                 while len(links) > 0:
@@ -123,7 +122,7 @@ def scrape_linkedin(result):
                                 jobs['jobs'].update(new_job) 
                                 print(f'{titles[i].get_text().strip()} (LinkedIn)')
 
-                    html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={q_location}&distance={distance}&start={page}', cookies=cookies, headers=headers)
+                    html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={q_location}&distance={distance}&start={page}', cookies=cookies)
                     soup = BeautifulSoup(html.text, 'html.parser')
                     links = soup.find_all('a')
         

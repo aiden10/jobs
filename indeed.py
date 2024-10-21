@@ -108,7 +108,7 @@ def merge_jobs(linkedin_jobs, indeed_jobs):
 def scrape_indeed(result):
     queries, locations, include, must_include, exclude, age_limit, distance = load_config()
     options = Options()     
-    options.headless = False
+    options.headless = True
     driver = webdriver.Firefox(options=options)
     # load old jobs
     with open('jobs.json', 'r') as job_json:
