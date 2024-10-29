@@ -7,13 +7,15 @@
     "locations": [
         "Waterloo, ON",
         "Markham, ON",
-        "Ottawa, ON"
+        "Ottawa, ON",
+        "Montreal"
     ],
     "includes": [
         "software engineering",
         "software engineer",
         "software",
         "technology",
+        "technical",
         "computer",
         "systems",
         "full stack",
@@ -22,7 +24,6 @@
         "frontend",
         "qa",
         "automation",
-        "data",
         "developer",
         "mobile",
         "web",

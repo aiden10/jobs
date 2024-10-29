@@ -1,3 +1,5 @@
 __pycache__/
 cookies.json
 headers.json
+test.py
+geckodriver.log

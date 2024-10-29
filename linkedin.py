@@ -91,7 +91,7 @@ def scrape_linkedin(result):
     old_count = len(jobs["jobs"])
     try:
         for query in queries:
-            time.sleep(random.randint(3,8))
+            time.sleep(random.randint(2,5))
             for q_location in query_locations:
                 print(f'query: {query}, location: {q_location}')
                 page = 0
@@ -99,7 +99,7 @@ def scrape_linkedin(result):
                 soup = BeautifulSoup(html.text, 'html.parser')
                 links = soup.find_all('a')
                 while len(links) > 0:
-                    time.sleep(random.randint(3,8))
+                    time.sleep(random.randint(2,5))
                     titles = get_titles(soup, include, must_include, exclude)
                     links = get_links(titles)
                     locations = get_locations(titles)
