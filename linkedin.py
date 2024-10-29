@@ -91,20 +91,21 @@ def scrape_linkedin(result):
     old_count = len(jobs["jobs"])
     try:
         for query in queries:
-            time.sleep(random.randint(2,5))
+            time.sleep(random.randint(2,4))
             for q_location in query_locations:
-                print(f'query: {query}, location: {q_location}')
+                print(f'query: {query}, location: {q_location} (LinkedIn)')
                 page = 0
                 html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={q_location}&distance={distance}&start=0', cookies=cookies)
                 soup = BeautifulSoup(html.text, 'html.parser')
                 links = soup.find_all('a')
                 while len(links) > 0:
-                    time.sleep(random.randint(2,5))
+                    time.sleep(random.randint(2,4))
                     titles = get_titles(soup, include, must_include, exclude)
                     links = get_links(titles)
                     locations = get_locations(titles)
                     dates = get_dates(titles)
                     page += 1
+                    print(f'page: {page} (LinkedIn)')
                     
                     for i in range(len(titles)):
                         new_job = {
@@ -126,8 +127,8 @@ def scrape_linkedin(result):
                     soup = BeautifulSoup(html.text, 'html.parser')
                     links = soup.find_all('a')
         
-    except KeyboardInterrupt:
-        print("exited early")
+    except Exception as e:
+        print(f'Error: {e} (LinkedIn)')
     new_count = len(jobs["jobs"])
     print(f'Found {abs(old_count - new_count)} new jobs on LinkedIn')
 
