@@ -136,7 +136,8 @@ def scrape_indeed(result):
                     locations = get_locations(titles)
                     dates = get_dates(titles)
                     page += 10
-                    print(f'page: {page//10} (Indeed)')
+                    if page % 50 == 0:
+                        print(f'page: {page//10} (Indeed)')
 
                     for i in range(len(titles)):
                         new_job = {

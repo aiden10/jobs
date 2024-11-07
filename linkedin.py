@@ -105,7 +105,8 @@ def scrape_linkedin(result):
                     locations = get_locations(titles)
                     dates = get_dates(titles)
                     page += 1
-                    print(f'page: {page} (LinkedIn)')
+                    if page % 100 == 0:
+                        print(f'page: {page} (LinkedIn)')
                     
                     for i in range(len(titles)):
                         new_job = {

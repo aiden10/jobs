@@ -1,7 +1,6 @@
 {
     "queries": [
         "student",
-        "intern",
         "co-op"
     ],
     "locations": [

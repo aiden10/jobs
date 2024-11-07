@@ -15,14 +15,23 @@ else: linkedin_input = False
 
 linkedin_jobs = [None]
 indeed_jobs = [None]
+threads = []
+
 if linkedin_input:
+    print("scraping LinkedIn...")
     t1 = threading.Thread(target=scrape_linkedin, args=(linkedin_jobs,))
     t1.start()
-    t1.join()
+    threads.append(t1)
+
 if indeed_input:
+    print("scraping Indeed...")
     t2 = threading.Thread(target=scrape_indeed, args=(indeed_jobs,))
     t2.start()
-    t2.join()
+    threads.append(t2)
+
+for thread in threads:
+    thread.join()
+
 if linkedin_input or indeed_input:
     all_jobs = merge_jobs(linkedin_jobs[0], indeed_jobs[0])
     write_jobs(all_jobs, old_jobs)
