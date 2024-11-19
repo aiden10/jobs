@@ -56,18 +56,19 @@ def get_locations(titles):
 def get_dates(titles):
     dates = []
     date_format = '%Y-%m-%d'
+    today = datetime.today()
     for title in titles:
-        today = datetime.today()
-        parent = title.find_parent('td', {'class': 'resultContent css-lf1alc eu4oa1w0'})
-        job_seen_beacon = parent.find_parent('div', {'class': "job_seen_beacon"})
-        date_info = job_seen_beacon.find('span', {'class': 'css-1yxm164 eu4oa1w0'}).text.replace('+', '')
-        days_info = re.sub('\D', '', date_info)
-        if days_info.isdigit() and len(days_info) > 0:
-            date_t = timedelta(days=int(days_info))
-            final_date = (today - date_t).strftime(date_format)
-        else: 
-            print(f"failed to get date for {title.get_text().strip()}: defaulting to today's date")
-            final_date = today.strftime(date_format) 
+    # Commented out because I can't find a way to get the dates of each job posting anymore
+    #     parent = title.find_parent('td', {'class': 'resultContent css-lf1alc eu4oa1w0'})
+    #     job_seen_beacon = parent.find_parent('div', {'class': "job_seen_beacon"})
+    #     date_info = job_seen_beacon.find('span', {'class': 'css-1yxm164 eu4oa1w0'}).text.replace('+', '')
+    #     days_info = re.sub('\D', '', date_info)
+    #     if days_info.isdigit() and len(days_info) > 0:
+    #         date_t = timedelta(days=int(days_info))
+    #         final_date = (today - date_t).strftime(date_format)
+    #     else: 
+        print(f"failed to get date for {title.get_text().strip()}: defaulting to today's date")
+        final_date = today.strftime(date_format) 
         
         dates.append(final_date)
 
@@ -116,55 +117,52 @@ def scrape_indeed(result):
 
     jobs = clear_old_jobs(jobs, age_limit)
     old_count = len(jobs["jobs"])
-    try:
-        for query in queries:
-            for location in locations:
-                print(f'query: {query}, location: {location} (Indeed)')
-                page = 0
-                driver.get(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&start={page}')
-                total_height = int(driver.execute_script("return document.body.scrollHeight"))
+    for query in queries:
+        for location in locations:
+            print(f'query: {query}, location: {location} (Indeed)')
+            page = 0
+            driver.get(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&fromage={age_limit}&start={page}')
+            total_height = int(driver.execute_script("return document.body.scrollHeight"))
+            driver.implicitly_wait(3)
+            html = driver.page_source
+            soup = BeautifulSoup(html, 'html.parser')
+            for i in range(1, total_height, random.randint(30, 250)):
+                driver.execute_script("window.scrollTo(0, {});".format(i))                
+                time.sleep(random.randint(1,3))
+
+            while True:
+                titles = get_titles(soup, include, must_include, exclude)
+                links = get_links(titles)
+                locations = get_locations(titles)
+                dates = get_dates(titles)
+                page += 10
+                if page % 50 == 0:
+                    print(f'page: {page//10} (Indeed)')
+
+                for i in range(len(titles)):
+                    new_job = {
+                        titles[i].get_text().strip(): {
+                            "link": links[i],
+                            "location": locations[i],
+                            "date": dates[i],
+                            "new": True
+                        }
+                    }
+                    # only add jobs within the age limit
+                    if new_job[titles[i].get_text().strip()]["date"] != 'failed to fetch date':
+                        if (datetime.today() - datetime.strptime((new_job[titles[i].get_text().strip()])["date"], '%Y-%m-%d')).days < age_limit: 
+                            jobs['jobs'].update(new_job) 
+                            print(f'{titles[i].get_text().strip()} (Indeed)')
+
+                # if no next page
+                time.sleep(random.randint(2,6))
+                if not driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div/div[5]/div/div[1]/nav/ul/li[6]/a'):
+                    break
+        
+                driver.get(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&fromage={age_limit}&start={page}')
                 driver.implicitly_wait(3)
                 html = driver.page_source
                 soup = BeautifulSoup(html, 'html.parser')
-                for i in range(1, total_height, random.randint(30, 250)):
-                    driver.execute_script("window.scrollTo(0, {});".format(i))                
-                    time.sleep(random.randint(1,3))
-
-                while True:
-                    titles = get_titles(soup, include, must_include, exclude)
-                    links = get_links(titles)
-                    locations = get_locations(titles)
-                    dates = get_dates(titles)
-                    page += 10
-                    if page % 50 == 0:
-                        print(f'page: {page//10} (Indeed)')
-
-                    for i in range(len(titles)):
-                        new_job = {
-                            titles[i].get_text().strip(): {
-                                "link": links[i],
-                                "location": locations[i],
-                                "date": dates[i],
-                                "new": True
-                            }
-                        }
-                        # only add jobs within the age limit
-                        if new_job[titles[i].get_text().strip()]["date"] != 'failed to fetch date':
-                            if (datetime.today() - datetime.strptime((new_job[titles[i].get_text().strip()])["date"], '%Y-%m-%d')).days < age_limit: 
-                                jobs['jobs'].update(new_job) 
-                                print(f'{titles[i].get_text().strip()} (Indeed)')
-
-                    # if no next page
-                    time.sleep(random.randint(2,6))
-                    if not driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div/div[5]/div/div[1]/nav/ul/li[6]/a'):
-                        break
-            
-                    driver.get(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&start={page}')
-                    driver.implicitly_wait(3)
-                    html = driver.page_source
-                    soup = BeautifulSoup(html, 'html.parser')
-    except Exception as e:
-        print(f'Error: {e} (Indeed)')
 
     driver.quit()
     
