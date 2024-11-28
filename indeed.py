@@ -121,7 +121,11 @@ def scrape_indeed(result):
         for location in locations:
             print(f'query: {query}, location: {location} (Indeed)')
             page = 0
-            driver.get(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&fromage={age_limit}&start={page}')
+            try:
+                driver.get(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&fromage={age_limit}&start={page}')
+            except Exception as e:
+                print(f"Error fetching results for query '{query}', location '{location}': {e}")
+                continue
             total_height = int(driver.execute_script("return document.body.scrollHeight"))
             driver.implicitly_wait(3)
             html = driver.page_source
@@ -129,11 +133,11 @@ def scrape_indeed(result):
             for i in range(1, total_height, random.randint(30, 250)):
                 driver.execute_script("window.scrollTo(0, {});".format(i))                
                 time.sleep(random.randint(1,3))
-
-            while True:
+            next_page = driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div/div[5]/div/div[1]/nav/ul/li[6]/a')
+            while len(next_page) > 0:
                 titles = get_titles(soup, include, must_include, exclude)
                 links = get_links(titles)
-                locations = get_locations(titles)
+                q_locations = get_locations(titles)
                 dates = get_dates(titles)
                 page += 10
                 if page % 50 == 0:
@@ -143,7 +147,7 @@ def scrape_indeed(result):
                     new_job = {
                         titles[i].get_text().strip(): {
                             "link": links[i],
-                            "location": locations[i],
+                            "location": q_locations[i],
                             "date": dates[i],
                             "new": True
                         }
@@ -153,16 +157,16 @@ def scrape_indeed(result):
                         if (datetime.today() - datetime.strptime((new_job[titles[i].get_text().strip()])["date"], '%Y-%m-%d')).days < age_limit: 
                             jobs['jobs'].update(new_job) 
                             print(f'{titles[i].get_text().strip()} (Indeed)')
-
-                # if no next page
-                time.sleep(random.randint(2,6))
-                if not driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div/div[5]/div/div[1]/nav/ul/li[6]/a'):
-                    break
-        
-                driver.get(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&fromage={age_limit}&start={page}')
+                
+                try:
+                    driver.get(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&fromage={age_limit}&start={page}')
+                except Exception as e:
+                    print(f"Error fetching results for query '{query}', location '{location}': {e}")
+                    continue
                 driver.implicitly_wait(3)
                 html = driver.page_source
                 soup = BeautifulSoup(html, 'html.parser')
+                next_page = driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div/div[5]/div/div[1]/nav/ul/li[6]/a')
 
     driver.quit()
     
