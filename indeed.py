@@ -3,11 +3,12 @@ from datetime import datetime, timedelta
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
+from seleniumbase import SB
 import json
 import random
 import time
 import re
-
+    
 def load_config():
     with open('config.json') as file:
         config = json.load(file)
@@ -23,8 +24,8 @@ def load_config():
 
 def get_titles(soup, includes, must_include, excludes):
     filtered_titles = []
-    titles = soup.select('span[title]')
-    for title in titles:
+    unfiltered_titles = soup.select('span[title]')
+    for title in unfiltered_titles:
         title_text = title.get_text().strip().lower()
         title_text = title_text.replace('/', ' ')
         title_words = title_text.split()
@@ -34,7 +35,7 @@ def get_titles(soup, includes, must_include, excludes):
         if includes_matches and must_include_matches and not excludes_matches:
             filtered_titles.append(title)
 
-    return filtered_titles
+    return filtered_titles, unfiltered_titles
 
 def get_links(titles):
     links = []
@@ -109,68 +110,64 @@ def merge_jobs(linkedin_jobs, indeed_jobs):
 def scrape_indeed(result):
     queries, locations, include, must_include, exclude, age_limit, distance = load_config()
     options = Options()     
-    options.headless = True
-    driver = webdriver.Firefox(options=options)
-    # load old jobs
-    with open('jobs.json', 'r') as job_json:
-        jobs = json.load(job_json)
+    options.headless = False
+    with SB(uc=True, headless=True) as sb:
+        # load old jobs
+        with open('jobs.json', 'r') as job_json:
+            jobs = json.load(job_json)
 
-    jobs = clear_old_jobs(jobs, age_limit)
-    old_count = len(jobs["jobs"])
-    for query in queries:
-        for location in locations:
-            print(f'query: {query}, location: {location} (Indeed)')
-            page = 0
-            try:
-                driver.get(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&fromage={age_limit}&start={page}')
-            except Exception as e:
-                print(f"Error fetching results for query '{query}', location '{location}': {e}")
-                continue
-            total_height = int(driver.execute_script("return document.body.scrollHeight"))
-            driver.implicitly_wait(3)
-            html = driver.page_source
-            soup = BeautifulSoup(html, 'html.parser')
-            for i in range(1, total_height, random.randint(30, 250)):
-                driver.execute_script("window.scrollTo(0, {});".format(i))                
-                time.sleep(random.randint(1,3))
-            next_page = driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div/div[5]/div/div[1]/nav/ul/li[6]/a')
-            while len(next_page) > 0:
-                titles = get_titles(soup, include, must_include, exclude)
-                links = get_links(titles)
-                q_locations = get_locations(titles)
-                dates = get_dates(titles)
-                page += 10
-                if page % 50 == 0:
-                    print(f'page: {page//10} (Indeed)')
-
-                for i in range(len(titles)):
-                    new_job = {
-                        titles[i].get_text().strip(): {
-                            "link": links[i],
-                            "location": q_locations[i],
-                            "date": dates[i],
-                            "new": True
-                        }
-                    }
-                    # only add jobs within the age limit
-                    if new_job[titles[i].get_text().strip()]["date"] != 'failed to fetch date':
-                        if (datetime.today() - datetime.strptime((new_job[titles[i].get_text().strip()])["date"], '%Y-%m-%d')).days < age_limit: 
-                            jobs['jobs'].update(new_job) 
-                            print(f'{titles[i].get_text().strip()} (Indeed)')
-                
+        jobs = clear_old_jobs(jobs, age_limit)
+        old_count = len(jobs["jobs"])
+        for query in queries:
+            for location in locations:
+                print(f'query: {query}, location: {location} (Indeed)')
+                page = 0
                 try:
-                    driver.get(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&fromage={age_limit}&start={page}')
+                    sb.open(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&fromage={age_limit}&start={page}')
                 except Exception as e:
                     print(f"Error fetching results for query '{query}', location '{location}': {e}")
                     continue
-                driver.implicitly_wait(3)
-                html = driver.page_source
+                html = sb.get_page_source()
                 soup = BeautifulSoup(html, 'html.parser')
-                next_page = driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div/div[5]/div/div[1]/nav/ul/li[6]/a')
+                last_titles = None
+                while True:
+                    sb.sleep(random.randint(3, 8))
+                    titles, all_titles = get_titles(soup, include, must_include, exclude)
+                    links = get_links(titles)
+                    if last_titles == all_titles:
+                        break
+                    last_titles = all_titles
+                    q_locations = get_locations(titles)
+                    dates = get_dates(titles)
+                    page += 10
+                    if page % 50 == 0:
+                        print(f'page: {page//10} (Indeed)')
 
-    driver.quit()
-    
-    new_count = len(jobs["jobs"])
-    print(f'Found {abs(old_count - new_count)} new jobs on Indeed')
+                    for i in range(len(titles)):
+                        new_job = {
+                            titles[i].get_text().strip(): {
+                                "link": links[i],
+                                "location": q_locations[i],
+                                "date": dates[i],
+                                "new": True
+                            }
+                        }
+                        # only add jobs within the age limit
+                        if new_job[titles[i].get_text().strip()]["date"] != 'failed to fetch date':
+                            if (datetime.today() - datetime.strptime((new_job[titles[i].get_text().strip()])["date"], '%Y-%m-%d')).days < age_limit: 
+                                jobs['jobs'].update(new_job) 
+                                print(f'{titles[i].get_text().strip()} (Indeed)')
+                    
+                    try:
+                        sb.open(f'https://ca.indeed.com/jobs?q={query}&l={location}&radius={distance}&fromage={age_limit}&start={page}')
+                    except Exception as e:
+                        print(f"Error fetching results for query '{query}', location '{location}': {e}")
+                        continue
+                    html = sb.get_page_source()
+                    soup = BeautifulSoup(html, 'html.parser')
 
-    result[0] = jobs
+        
+        new_count = len(jobs["jobs"])
+        print(f'Found {abs(old_count - new_count)} new jobs on Indeed')
+
+        result[0] = jobs

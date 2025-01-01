@@ -95,7 +95,7 @@ def scrape_linkedin(result):
             for q_location in query_locations:
                 print(f'query: {query}, location: {q_location} (LinkedIn)')
                 page = 0
-                html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={q_location}&distance={distance}&start=0', cookies=cookies)
+                html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={q_location}&distance={distance}&start=0', cookies=cookies, headers=requests.utils.default_headers())
                 soup = BeautifulSoup(html.text, 'html.parser')
                 links = soup.find_all('a')
                 while len(links) > 0:
@@ -124,7 +124,7 @@ def scrape_linkedin(result):
                                 jobs['jobs'].update(new_job) 
                                 print(f'{titles[i].get_text().strip()} (LinkedIn)')
 
-                    html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={q_location}&distance={distance}&start={page}', cookies=cookies)
+                    html = requests.get(f'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={q_location}&distance={distance}&start={page}', cookies=cookies, headers=requests.utils.default_headers())
                     soup = BeautifulSoup(html.text, 'html.parser')
                     links = soup.find_all('a')
         
