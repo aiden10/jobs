@@ -1,13 +1,8 @@
 from bs4 import BeautifulSoup 
 from datetime import datetime, timedelta
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
 from seleniumbase import SB
 import json
 import random
-import time
-import re
     
 def load_config():
     with open('config.json') as file:
@@ -109,8 +104,6 @@ def merge_jobs(linkedin_jobs, indeed_jobs):
 
 def scrape_indeed(result):
     queries, locations, include, must_include, exclude, age_limit, distance = load_config()
-    options = Options()     
-    options.headless = False
     with SB(uc=True, headless=True) as sb:
         # load old jobs
         with open('jobs.json', 'r') as job_json:
