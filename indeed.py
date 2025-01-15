@@ -63,9 +63,8 @@ def get_dates(titles):
     #         date_t = timedelta(days=int(days_info))
     #         final_date = (today - date_t).strftime(date_format)
     #     else: 
-        print(f"failed to get date for {title.get_text().strip()}: defaulting to today's date")
+        # print(f"failed to get date for {title.get_text().strip()}: defaulting to today's date")
         final_date = today.strftime(date_format) 
-        
         dates.append(final_date)
 
     return dates
